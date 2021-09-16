@@ -1,0 +1,80 @@
+This is one of the nqt coding Question. Question Source: tce (after the exam)
+
+Example 1:
+Input:
+5   -> value of N
+(10,20,30,40,50)  ->Element of Arr[]
+60    -> value of C
+Output:
+3        ->Minimum 3 boxes required
+
+Explanation:
+Arr[]={10,20,30,40,50} and c=60
+1st box={10,20,30}
+2nd box={40}
+3rd box={50}
+
+Example 1:
+Input:
+4   -> value of N
+(10,20,30,40)  ->Element of Arr[]
+80    -> value of C
+Output:
+2        ->Minimum 2 boxes required
+
+Explanation:
+Arr[]={10,20,30,40} and c=60
+1st box={10,20,30}
+2nd box={40}
+
+import java.util.*;
+import java.lang.*;
+public class Main
+{
+    static int printAllSubsetsRec(int arr[],
+                              int n,
+                              ArrayList<Integer> v,
+                              int sum)
+{
+    if (sum == 0)
+    {
+        return (int)v.size();
+    }
+  
+    if (sum < 0)
+        return Integer.MAX_VALUE;
+    if (n == 0)
+        return Integer.MAX_VALUE;
+    int x = printAllSubsetsRec(
+            arr,
+            n - 1, v, sum);
+    v.add(arr[n - 1]);
+     
+    int y = printAllSubsetsRec(
+            arr, n, v,
+            sum - arr[n - 1]);
+    v.remove(v.size() - 1);
+     
+    return Math.min(x, y);
+}
+static int printAllSubsets(int arr[],
+                           int n, int sum)
+{
+    ArrayList<Integer> v = new ArrayList<>();
+    return printAllSubsetsRec(arr, n,
+                              v, sum);
+}
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int arr[]=new int[n];
+        for(int i=0;i<n;i++)
+        {
+            arr[i]=sc.nextInt();
+        }
+        int c=sc.nextInt();
+	    int k=printAllSubsets(arr, n, c);
+	    System.out.println(n-k);
+	}
+    
+}
