@@ -1,0 +1,74 @@
+This is one of the nqt coding Question. Question Source: tce (after the exam)
+
+Example 1:
+Input:
+ppqrssqr    -> Value of String
+Output:
+Pairing is possile -> All the letters
+
+Explanation:
+From the input given
+str=ppqrssqr
+Group 1:(p,p)
+Group 2:(q,q)
+Group 3:(r,r)
+Group 4:(s,s)
+All the students are paired. No Students are left.
+Hence output is "Pairing is possible"
+
+Example 2:
+Input:
+abcddba
+Output:
+Pairing is not possible
+
+Explanation:
+Group 1:(a,a)
+Group 2:(d,d)
+Group 3:(b,b)
+All the students cannot be paired. 'c' is left out.
+Hence output is "Pairing is not possible"
+
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		String s=sc.nextLine();
+		int n=s.length();
+		char arr[]=new char[n];
+		for(int i=0;i<n;i++)
+		{
+		    arr[i]=s.charAt(i);
+		}
+		int count=0;
+		int check=0;
+		for(int i=0;i<n;i++)
+		{
+		    count=0;
+		    for(int j=0;j<n;j++)
+		    {
+		        if(arr[i]==arr[j])
+		        count++;
+		    }
+		    if(count%2==0)
+		    {
+		        check=1;
+		    }
+		    else
+		    {
+		        check=0;
+		        break;
+		    }
+		}
+		    if(check==1)
+		    {
+		     System.out.println("Pairing is possible");
+		    }
+		    else
+		    {
+		        System.out.println("Pairing is not possible");
+		    }
+		
+	}
+}
